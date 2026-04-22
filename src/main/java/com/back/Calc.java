@@ -6,14 +6,14 @@ public class Calc {
 
     public static int run(String expression) {
         String[] expressionBites;
-
+        int result = 0;
         if (expression.contains(" + ")) {
             expressionBites = expression.split(" \\+ ");
-            int num1 = Integer.parseInt(expressionBites[0]);
-            int num2 = Integer.parseInt(expressionBites[1]);
-            int num3 = Integer.parseInt(expressionBites[2]);
+            for (int i = 0; i < expressionBites.length; i++) {
+                result +=Integer.parseInt(expressionBites[i]);
+            }
 
-            return num1 + num2 + num3;
+            return result;
         }
         else if (expression.contains(" - ")) {
             expressionBites = expression.split(" \\- ");
