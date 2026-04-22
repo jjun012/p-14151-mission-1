@@ -12,7 +12,7 @@ public class Calc {
         if (plus != -1 && plus > minus) {
             String left = expression.substring(0, plus);
             String right = expression.substring(plus + 1);
-            return run(left) + Integer.parseInt(right);
+            return run(left) + run(right);
         }
 
         if  (minus != -1 && plus < minus) {
@@ -20,13 +20,13 @@ public class Calc {
             if (isOperator) {
                 String left = expression.substring(0, minus);
                 String right = expression.substring(minus + 1);
-                return run(left) - Integer.parseInt(right);
+                return run(left) - run(right);
             }
         }
         if (mul != -1){
             String left = expression.substring(0, mul);
             String right = expression.substring(mul + 1);
-            return run(left) * Integer.parseInt(right);
+            return run(left) * run(right);
         }
         return Integer.parseInt(expression);
     }
