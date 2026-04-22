@@ -11,3 +11,4 @@ public class CalcTest {
     void t1() {
         assertThat(Calc.run("1 + 1")).isEqualTo(2);
     }
+}
