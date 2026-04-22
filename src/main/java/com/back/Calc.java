@@ -16,9 +16,12 @@ public class Calc {
         }
 
         if  (minus != -1 && plus < minus) {
-            String left = expression.substring(0, minus);
-            String right = expression.substring(minus + 1);
-            return run(left) - Integer.parseInt(right);
+            boolean isOperator = minus >0 && Character.isDigit(expression.charAt(minus - 1));
+            if (isOperator) {
+                String left = expression.substring(0, minus);
+                String right = expression.substring(minus + 1);
+                return run(left) - Integer.parseInt(right);
+            }
         }
         if (mul != -1){
             String left = expression.substring(0, mul);
