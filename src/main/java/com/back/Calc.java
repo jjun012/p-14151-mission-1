@@ -4,6 +4,7 @@ public class Calc {
 
     public static int run(String expression) {
         expression = expression.replaceAll(" ","");
+        expression = expression.replaceAll("[\\(\\)]","");
 
         int plus = expression.lastIndexOf("+");
         int minus = expression.lastIndexOf("-");
