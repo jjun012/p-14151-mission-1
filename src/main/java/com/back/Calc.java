@@ -9,6 +9,11 @@ public class Calc {
                 return run(expression.substring(1, expression.length()-1));
             }
         }
+        if (expression.startsWith("-")) {
+            if (expression.charAt(1)=='('){
+                return - run(expression.substring(1));
+            }
+        }
         int plus = findLast(expression,'+');
         int minus = findLast(expression,'-');
         int mul =  findLast(expression,'*');
