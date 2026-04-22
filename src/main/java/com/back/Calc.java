@@ -7,6 +7,7 @@ public class Calc {
 
         int plus = expression.lastIndexOf("+");
         int minus = expression.lastIndexOf("-");
+        int mul =  expression.lastIndexOf("*");
 
         if (plus != -1 && plus > minus) {
             String left = expression.substring(0, plus);
@@ -18,6 +19,11 @@ public class Calc {
             String left = expression.substring(0, minus);
             String right = expression.substring(minus + 1);
             return run(left) - Integer.parseInt(right);
+        }
+        if (mul != -1){
+            String left = expression.substring(0, mul);
+            String right = expression.substring(mul + 1);
+            return run(left) * Integer.parseInt(right);
         }
         return Integer.parseInt(expression);
     }
