@@ -4,11 +4,14 @@ public class Calc {
 
     public static int run(String expression) {
         expression = expression.replaceAll(" ","");
-        expression = expression.replaceAll("[\\(\\)]","");
-
-        int plus = expression.lastIndexOf("+");
-        int minus = expression.lastIndexOf("-");
-        int mul =  expression.lastIndexOf("*");
+        if (expression.startsWith("(") && expression.endsWith(")")) {
+            if (isFull(expression)){
+                return run(expression.substring(1, expression.length()-1));
+            }
+        }
+        int plus = findLast(expression,'+');
+        int minus = findLast(expression,'-');
+        int mul =  findLast(expression,'*');
 
         if (plus != -1 && plus > minus) {
             String left = expression.substring(0, plus);
@@ -30,6 +33,35 @@ public class Calc {
             return run(left) * run(right);
         }
         return Integer.parseInt(expression);
+    }
+    private static boolean isFull(String exp) {
+        int count = 0;
+        for (int i = 0; i < exp.length(); i++) {
+            if (exp.charAt(i) == '(') {
+                count++;
+            }
+            else if (exp.charAt(i) == ')') {
+                count--;
+            }
+            if (count == 0 && i< exp.length() -1) {
+                return false;
+            }
+        }
+        return count == 0;
+    }
+    private static int findLast(String exp, char find) {
+        int brackets = 0;
+        for (int i = exp.length() - 1; i >= 0; i--) {
+            char ch = exp.charAt(i);
+            if (ch == '(') {
+                brackets++;
+            } else if (ch ==')') {
+                brackets--;
+            } else if (brackets == 0 && ch == find) {
+                return i;
+            }
+        }
+        return -1;
     }
 
 //        String[] expressionBites;
